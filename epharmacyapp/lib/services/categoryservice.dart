@@ -4,7 +4,7 @@ import 'package:epharmacyapp/models/categoryModel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/firebaseproviders.dart';
 
-final categoriesServiceProvider=Provider((ref)=>CategoriesService(fireStore: ref.watch(firebaseStorageProvider as AlwaysAliveProviderListenable<FirebaseFirestore>)));
+final categoriesServiceProvider=Provider((ref)=>CategoriesService(fireStore: ref.watch(FirebaseFirestoreProvider)));
 class CategoriesService {
   final FirebaseFirestore _fireStore;
   CategoriesService({required FirebaseFirestore fireStore})
