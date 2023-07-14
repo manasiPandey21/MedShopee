@@ -16,50 +16,63 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   Widget build(BuildContext context) {
     final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child:  Icon(
+                        Icons.arrow_back,
+                        size: 25,
+                        color: Colors.teal.shade300,
+                      ),
+                      ),
+                      
+                ),
+      
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 50,
+              height: 100,
             ),
             Stack(
               children: [
-                Image.network(
-                  product.image!,
-                  height: 250,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.network(
+                    product.image!,
+                    height: 250,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Positioned(
-                      top: 10,
-                      left: 10,
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 25,
-                        color: Colors.black,
-                      )),
-                ),
+               
                 const Positioned(
                     top: 10,
                     right: 10,
-                    child: Icon(
-                      Icons.shopping_basket,
-                      color: Colors.blue,
-                      size: 25,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.shopping_cart_rounded,
+                        color: Colors.teal,
+                        size: 35,
+                      ),
                     )),
                 const Positioned(
                     top: 10,
                     right: 60,
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.blue,
-                      size: 25,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.teal,
+                        size: 35,
+                      ),
                     ))
               ],
             ),
@@ -96,7 +109,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 child: Text(
                   "\$${product.price}",
                   style: const TextStyle(
-                      color: Colors.blue,
+                      color: Colors.teal,
                       fontSize: 25,
                       fontWeight: FontWeight.w500),
                 ),
@@ -110,6 +123,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   width: 250,
                   height: 50,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal.shade300,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
+                    ),
+                    
                       onPressed: () {}, child: Text("Add To Cart"))),
             ),
             const SizedBox(
