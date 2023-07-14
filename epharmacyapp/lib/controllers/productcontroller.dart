@@ -14,6 +14,20 @@ final productsControllerProvider =
 });
 final getProductsProvider = StreamProvider(
     (ref) => ref.watch(productsControllerProvider.notifier).getProducts());
+    
+final getProductByCategoryNameProvider =
+    StreamProvider.family((ref, String categoryname) {
+  return ref
+      .watch(productsControllerProvider.notifier)
+      .getProductByCategoryName(categoryname);
+});
+
+final relatedProductsProvider =
+    StreamProvider.family((ref, String categoryname) {
+  return ref
+      .watch(productsControllerProvider.notifier)
+      .getRelatedProducts(categoryname);
+});
 
 class ProductController extends StateNotifier<bool> {
   final ProductService _productService;
@@ -31,5 +45,12 @@ class ProductController extends StateNotifier<bool> {
 
   Stream<ProductModel> getProductsById(String productId) {
     return _productService.getProductById(productId);
+  }
+   Stream<List<ProductModel>> getProductByCategoryName(String categoryname) {
+    return _productService.getProductsByCategoryName(categoryname);
+  }
+
+  Stream<List<ProductModel>> getRelatedProducts(String categoryname) {
+    return _productService.getRelatedProducts(categoryname);
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../controllers/productcontroller.dart';
+import '../pages/productdetails.dart';
 
 class ProductWidget extends ConsumerWidget {
   const ProductWidget({Key? key}) : super(key: key);
@@ -37,33 +38,41 @@ class ProductWidget extends ConsumerWidget {
                       ),
                       child: Column(
                         children: [
-                          Stack(
-                            children: [
-                              Image.network(
-                                data[index].image!,
-                                fit: BoxFit.fitHeight,
-                                height: 150,
-                                width: double.infinity,
-                              ),
-                              Positioned(
-                                  top: 5,
-                                  right: 0,
-                                  child: data[index].isAvailable!
-                                      ? const Text("")
-                                      : Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.blueAccent,
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: const Text(
-                                            "Out Of Stock",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ))
-                            ],
+                          GestureDetector(
+                            onTap: (){ Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProductDetailsPage(),
+                        settings: RouteSettings(
+                            arguments: data[index])));},
+                            child: Stack(
+                              children: [
+                                Image.network(
+                                  data[index].image!,
+                                  fit: BoxFit.fitHeight,
+                                  height: 150,
+                                  width: double.infinity,
+                                ),
+                                Positioned(
+                                    top: 5,
+                                    right: 0,
+                                    child: data[index].isAvailable!
+                                        ? const Text("")
+                                        : Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.blueAccent,
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            child: const Text(
+                                              "Out Of Stock",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ))
+                              ],
+                            ),
                           ),
                           Center(
                               child: Text(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../controllers/categoriescontroller.dart';
+import '../pages/productsByCategoryPage.dart';
 
 class CategoriesWidget extends ConsumerWidget {
   const CategoriesWidget({super.key});
@@ -25,12 +26,17 @@ class CategoriesWidget extends ConsumerWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
                 children: [
-                  Image.network(
-                      data[index].image.toString(),
-                      fit: BoxFit.cover,
-                      height: 60,
-                      width: 60,
-                    ),
+                  GestureDetector(
+                     onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductsByCategoryPage(),settings: RouteSettings(arguments: data[index])));
+              },
+                    child: Image.network(
+                        data[index].image.toString(),
+                        fit: BoxFit.cover,
+                        height: 60,
+                        width: 60,
+                      ),
+                  ),
                   
                   Text(
                     data[index].name.toString(),

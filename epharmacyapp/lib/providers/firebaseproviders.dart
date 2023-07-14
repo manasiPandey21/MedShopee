@@ -4,5 +4,5 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final FirebaseFirestoreProvider = Provider((ref) => FirebaseFirestore.instance);
-final FirebaseAuthProvider = Provider((ref) => FirebaseFirestore.instance);
+final FirebaseAuthProvider = Provider((ref) => FirebaseAuth.instance);
 final firebaseStorageProvider = Provider((ref) => FirebaseStorage.instance);
